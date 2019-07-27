@@ -9,9 +9,9 @@ IMAGE_HEIGHT = 240
 
 class PiCameraFramer:
     
-    def __init__(self):
+    def __init__(self, size=(IMAGE_WIDTH, IMAGE_HEIGHT)):
         self.camera = picamera.PiCamera()
-        self.camera.resolution = (IMAGE_WIDTH, IMAGE_HEIGHT)
+        self.camera.resolution = size
         self.stream = picamera.array.PiRGBArray(self.camera)
 
     def capture(self):
@@ -24,7 +24,7 @@ class PiCameraFramer:
 
 
 if __name__ == "__main__":
-    framer = PiCameraFramer()
+    framer = PiCameraFramer((1920, 1080))
     generator = framer.capture()
     for i in range(10):
         frame = next(generator)
