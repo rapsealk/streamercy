@@ -19,7 +19,7 @@ class Publisher:
     def run(self):
         while True:
             frame = next(self.generator)
-            data = frame.tostring()
+            data = frame.flatten().tostring()
             print(frame.shape, len(data))
             self.socket.sendto(constant.HEADER_PACKET, self.address)
             for i in range(0, constant.TOTAL_BYTES, constant.PACKET_BYTES):
